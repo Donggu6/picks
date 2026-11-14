@@ -1,61 +1,290 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
+<!-- 쿠팡 파트너스 소개 페이지 · FINDORA 디자인(2026-11-14 대표 "FINDORA로 바꿔").
+     PickSafe 작업실에 저장한 링크로 상품 칸을 채운 파일 하나(무료 호스팅용). 버튼은 쿠팡 파트너스 링크로 바로 간다.
+     원래 시안(Documents/Codex/…/findora-link-page)의 모양을 그대로 쓰되, 예시 상품·근거 없는 설명은 넣지 않고 셀러가 저장한 상품만 보여 준다. -->
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>소개한 상품</title>
-  <meta name="description" content="인스타그램에서 소개한 상품을 한곳에 모았어요.">
-  <meta name="robots" content="noindex">
-    <style>
-    :root { --bg: #e9edf3; --card: #f5f7fa; --ink: #1a2030; --muted: #434c60; --edge: #2b3242; --accent: #5b46cc; --notice: #fff4e5; }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: var(--bg); background-image: radial-gradient(rgba(26,32,48,.09) 1px, transparent 1.2px); background-size: 14px 14px; color: var(--ink);
-      font: 15px/1.6 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif; word-break: keep-all; overflow-wrap: break-word; }
-    .wrap { max-width: 560px; margin: 0 auto; padding: 0 16px 48px; }
-    .notice { margin: 0 -16px 20px; padding: 12px 16px; background: var(--notice); border-bottom: 2px solid var(--edge); font-size: 13px; font-weight: 600; }
-    h1 { margin: 8px 0 4px; font: 700 33px/1.3 'Galmuri11', sans-serif; }
-    .sub { margin: 0 0 18px; color: var(--muted); font-size: 14px; }
-    .find { display: block; width: 100%; padding: 12px 14px; margin: 0 0 18px; border: 2px solid var(--edge); background: #fff; font: 15px 'Galmuri11', sans-serif; box-shadow: inset 2px 2px 0 rgba(26,32,48,.07); }
-    .find:focus-visible { outline: 2px dashed var(--accent); outline-offset: 2px; }
-    ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
-    li { background: var(--card); border: 2px solid var(--edge); box-shadow: 4px 4px 0 var(--edge); padding: 14px 16px; display: grid; grid-template-columns: 52px 1fr; gap: 4px 14px; align-items: center; }
-    .no { grid-row: span 2; display: grid; place-items: center; height: 52px; background: var(--accent); color: #fff; font: 700 22px 'Galmuri11', sans-serif; border: 2px solid var(--edge); }
-    .name { margin: 0; font: 700 16px/1.45 'Galmuri11', sans-serif; }
-    .go { display: flex; justify-content: space-between; align-items: center; padding: 9px 12px; background: var(--accent); color: #fff; text-decoration: none; border: 2px solid var(--edge); box-shadow: 3px 3px 0 var(--edge); font: 700 14px 'Galmuri11', sans-serif; }
-    .go:active { transform: translate(3px,3px); box-shadow: none; }
-    .go:focus-visible { outline: 2px dashed var(--ink); outline-offset: 3px; }
-    .empty { padding: 18px; border: 2px dashed var(--edge); color: var(--muted); text-align: center; }
-    .ig { display: inline-block; margin-top: 22px; color: var(--ink); font-weight: 700; }
-    footer { margin-top: 28px; color: var(--muted); font-size: 12px; }
-    [hidden] { display: none !important; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FINDORA | 소개한 상품</title>
+  <meta name="description" content="인스타그램에서 소개한 상품을 한곳에서 볼 수 있어요." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="FINDORA | Discover Better Things" />
+  <meta property="og:description" content="인스타그램에서 소개한 상품을 한곳에서 볼 수 있어요." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&amp;family=Playfair+Display:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet" />
+  <style>
+:root {
+  --ink: #183348;
+  --ink-soft: #456174;
+  --paper: #eef2ec;
+  --paper-deep: #dce7df;
+  --signal: #f25f41;
+  --signal-dark: #cc4329;
+  --sun: #f3c258;
+  --sky: #b8d8e6;
+  --line: rgba(24, 51, 72, 0.17);
+  --display: "Playfair Display", Georgia, serif;
+  --sans: "DM Sans", "Pretendard", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #d2dfdc;
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+button, a { font: inherit; }
+a { color: inherit; }
+button { color: inherit; }
+
+.site-shell {
+  width: min(100%, 720px);
+  min-height: 100vh;
+  margin: 0 auto;
+  overflow: hidden;
+  background: var(--paper);
+  box-shadow: 0 0 80px rgba(24, 51, 72, 0.12);
+}
+
+.hero {
+  position: relative;
+  min-height: 550px;
+  padding: 30px 24px 34px;
+  overflow: hidden;
+  color: #fbfbf3;
+  background: var(--ink);
+}
+.orbit { position: absolute; border-radius: 999px; pointer-events: none; }
+.orbit-one { width: 370px; height: 370px; right: -145px; top: 75px; background: var(--signal); }
+.orbit-two { width: 210px; height: 210px; right: 75px; bottom: -120px; border: 1px solid rgba(238,242,236,.52); }
+.wordmark { position: relative; z-index: 1; font-weight: 700; font-size: 17px; letter-spacing: .035em; }
+.wordmark span { color: var(--signal); }
+.hero-kicker, .section-kicker { margin: 0; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+.hero-kicker { position: relative; z-index: 1; margin-top: 82px; color: var(--sun); }
+.hero h1 { position: relative; z-index: 1; max-width: 470px; margin: 12px 0 18px; font-family: var(--display); font-size: clamp(56px, 12vw, 85px); line-height: .88; letter-spacing: -.065em; }
+.hero h1 em { font-weight: 600; }
+.hero-copy { position: relative; z-index: 1; max-width: 330px; margin: 0; color: rgba(251,251,243,.84); font-size: 14px; line-height: 1.7; }
+.hero-anchor { position: absolute; z-index: 2; bottom: 32px; left: 24px; display: inline-flex; gap: 12px; align-items: center; text-decoration: none; font-size: 13px; font-weight: 700; }
+.hero-anchor span { display: grid; width: 29px; height: 29px; place-items: center; border: 1px solid rgba(251,251,243,.6); border-radius: 50%; }
+
+.directory, .picks-section, .watch-list, .disclosure { padding: 48px 24px; }
+.directory { background: var(--paper); }
+.section-heading { display: flex; justify-content: space-between; gap: 20px; align-items: end; }
+.section-kicker { color: var(--signal-dark); text-transform: uppercase; }
+h2 { margin: 9px 0 0; font-family: var(--display); font-size: clamp(30px, 7vw, 44px); line-height: 1.04; letter-spacing: -.05em; }
+.count { margin: 0 0 5px; font-size: 12px; color: var(--ink-soft); white-space: nowrap; }
+.filter-row { display: flex; gap: 8px; margin-top: 29px; padding-bottom: 4px; overflow-x: auto; scrollbar-width: none; }
+.filter-row::-webkit-scrollbar { display: none; }
+.filter { flex: 0 0 auto; padding: 9px 14px; cursor: pointer; border: 1px solid var(--line); border-radius: 999px; background: transparent; font-size: 13px; transition: background .18s ease, color .18s ease, border-color .18s ease; }
+.filter:hover, .filter.is-active { color: #fff; border-color: var(--ink); background: var(--ink); }
+.filter:focus-visible, .region:focus-visible, a:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
+.region-switch { display: grid; grid-template-columns: 1fr 1fr; margin-top: 38px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.region { display: flex; gap: 8px; padding: 16px 4px; cursor: pointer; border: 0; background: none; text-align: left; font-weight: 600; font-size: 14px; transition: color .18s ease; }
+.region + .region { justify-content: end; }
+.region span { color: var(--signal); font-size: 11px; }
+.region:not(.is-active) { color: #88969a; }
+
+.picks-section { padding-top: 35px; background: #fbfbf3; }
+.picks-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.region-label { margin: 0; color: var(--ink-soft); font-size: 10px; font-weight: 700; letter-spacing: .08em; }
+.pick-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.pick-card { display: flex; flex-direction: column; min-height: 306px; padding: 11px; border: 1px solid var(--line); background: #fffefa; }
+.pick-card[hidden] { display: none; }
+.product-art { display: grid; height: 130px; place-items: center; overflow: hidden; color: var(--ink); font-family: var(--display); font-size: 70px; line-height: 1; }
+.product-art span { transform: rotate(-9deg); }
+.art-speaker { background: var(--sky); }
+.art-lamp { background: #f2d67b; }
+.art-serum { background: #d2bddb; }
+.art-bag { background: #e5a18e; }
+.art-camera { background: #a7d3c3; }
+.art-cup { background: #f2d0a2; }
+.art-mist { background: #bdd6ee; }
+.art-shoe { background: #c7c2b0; }
+.pick-meta { display: flex; justify-content: space-between; gap: 8px; margin-top: 13px; color: var(--ink-soft); font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.pick-card h3 { margin: 7px 0 5px; font-size: 15px; line-height: 1.25; letter-spacing: -.03em; }
+.pick-card p { margin: 0; color: var(--ink-soft); font-size: 11px; line-height: 1.45; }
+.pick-card a { margin-top: auto; padding-top: 14px; color: var(--signal-dark); font-size: 11px; font-weight: 700; text-decoration: none; }
+.empty-state { margin: 25px 0 0; padding: 24px 0; border-top: 1px solid var(--line); color: var(--ink-soft); line-height: 1.6; font-size: 14px; text-align: center; }
+
+.watch-list { display: grid; grid-template-columns: 70px 1fr; gap: 18px; align-items: start; color: #fbfbf3; background: var(--signal); }
+.watch-symbol { display: grid; width: 64px; height: 64px; place-items: center; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; font-family: var(--display); font-size: 27px; }
+.watch-list .section-kicker { color: var(--ink); }
+.watch-list h2 { margin-top: 7px; }
+.follow-link { grid-column: 1 / -1; display: flex; justify-content: space-between; padding: 13px 0; border-top: 1px solid rgba(255,255,255,.55); border-bottom: 1px solid rgba(255,255,255,.55); text-decoration: none; font-size: 14px; font-weight: 700; }
+
+.disclosure { background: var(--paper-deep); }
+.disclosure h2 { margin-bottom: 24px; }
+.disclosure-copy { display: grid; gap: 18px; }
+.disclosure-copy p { margin: 0; color: var(--ink-soft); font-size: 12px; line-height: 1.65; }
+.disclosure-copy strong { color: var(--ink); }
+footer { display: flex; justify-content: space-between; padding: 20px 24px; background: var(--ink); color: rgba(251,251,243,.72); font-size: 10px; letter-spacing: .04em; }
+footer p { margin: 0; }
+
+@media (min-width: 600px) {
+  .hero { min-height: 590px; padding: 36px 46px 40px; }
+  .hero-anchor { left: 46px; bottom: 38px; }
+  .directory, .picks-section, .watch-list, .disclosure { padding-right: 46px; padding-left: 46px; }
+  .pick-grid { gap: 18px; }
+  .pick-card { min-height: 340px; padding: 14px; }
+  .product-art { height: 155px; }
+  footer { padding-right: 46px; padding-left: 46px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; }
+}
+
+
+    /* 비즈니스 전환율을 높이는 퀵 검색창 & 상태 뱃지 스타일 */
+    .quick-search-wrap {
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .quick-search-input {
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 14px;
+      border: 1.5px solid rgba(24, 51, 72, 0.16);
+      background: #ffffff;
+      font-size: 14px;
+      color: #183348;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .quick-search-input:focus {
+      border-color: #183348;
+      box-shadow: 0 4px 14px rgba(24, 51, 72, 0.08);
+    }
+
+    .pick-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(242, 95, 65, 0.12);
+      color: #d9482b;
+      margin-bottom: 8px;
+    }
+
+    .top-disclosure {
+      margin: 0;
+      padding: 12px 24px;
+      background: #fff4e5;
+      border-bottom: 1px solid rgba(24, 51, 72, 0.12);
+      color: #183348;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .cta-btn[aria-disabled="true"] {
+      background: #8a94a0;
+      pointer-events: none;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 14px;
+      padding: 11px 14px;
+      border-radius: 10px;
+      background: #183348;
+      color: #ffffff !important;
+      font-weight: 600;
+      font-size: 13.5px;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .cta-btn:hover {
+      background: #f25f41;
+      transform: translateY(-1px);
+    }
+  
+    .pick-card h3 { word-break: keep-all; }
+    .soon { word-break: keep-all; margin: 0; padding: 26px 18px; border: 1px dashed var(--line); background: #fffefa; color: var(--ink-soft); font-size: 14px; line-height: 1.7; text-align: center; }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <p class="notice">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
-    <h1>소개한 상품</h1>
-    <p class="sub">영상에 나온 번호나 이름으로 찾아보세요.</p>
-    
-    <p class="empty">아직 올린 상품이 없어요.</p>
-    <ol data-list>
-      </ol>
-    
-    <p class="empty" data-none hidden>찾는 상품이 없어요. 번호를 다시 확인해 주세요.</p>
-    
-    <footer>가격과 배송은 쿠팡 상품 페이지에서 확인해 주세요.</footer>
-  </main>
+  <div class="site-shell">
+    <header class="hero">
+      <div class="orbit orbit-one"></div>
+      <div class="orbit orbit-two"></div>
+      <p class="wordmark">FINDORA<span>.</span></p>
+      <p class="hero-kicker">CURATED COMMERCE &amp; DISCOVERY DESK</p>
+      <h1>Discover <em>better</em> things.</h1>
+      <p class="hero-copy">일상을 조금 더 편하게 만드는 아이템을 골라 소개합니다.</p>
+      <a href="#picks" class="hero-anchor">소개한 상품 보기 <span>↓</span></a>
+    </header>
+
+    <p class="top-disclosure">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+
+    <section class="directory" id="picks">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">WEEKLY PICKS</p>
+          <h2>Weekly Selection</h2>
+        </div>
+        <p class="count" id="pick-count">0 picks</p>
+      </div>
+      
+    </section>
+
+    <section class="picks-section">
+      <div class="picks-header"><p class="region-label">KOREA / EDIT 01</p></div>
+      
+      <p class="soon">곧 첫 상품을 소개해요. 새 소식은 인스타그램에서 먼저 만나요.</p>
+      <p class="empty-state" id="empty-state" hidden>찾는 상품이 없어요. 번호를 다시 확인해 주세요.</p>
+    </section>
+
+    <section class="watch-list">
+      <div class="watch-symbol">✦</div>
+      <div>
+        <p class="section-kicker">OFFICIAL CHANNEL</p>
+        <h2>상품 소개 영상과 새 소식은 인스타그램에서.</h2>
+      </div>
+      <a href="https://www.instagram.com/_findora.official/" class="follow-link" target="_blank" rel="noopener noreferrer"><span>@_findora.official 팔로우</span><span>↗</span></a>
+    </section>
+
+    <section class="disclosure">
+      <p class="section-kicker">AFFILIATE DISCLOSURE</p>
+      <h2>경제적 이해관계 안내</h2>
+      <div class="disclosure-copy">
+        <p><strong>한국어 고지:</strong> 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 구매자에게는 어떠한 추가 비용도 발생하지 않으며, FINDORA가 골라 소개하는 상품입니다. 가격과 배송은 쿠팡 상품 페이지에서 확인해 주세요.</p>
+        <p><strong>English Notice:</strong> As an affiliate partner, FINDORA may earn a small commission from qualifying purchases made through links on this page at no extra cost to you.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>© <span id="year">2026</span> FINDORA. All rights reserved.</p>
+      <p>CONTACT · @_findora.official</p>
+    </footer>
+  </div>
   <script>
     (function () {
-      var input = document.querySelector('[data-find]'); if (!input) return;
-      var rows = [].slice.call(document.querySelectorAll('[data-list] li')), none = document.querySelector('[data-none]');
-      input.addEventListener('input', function () {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      var input = document.getElementById('product-search'); if (!input) return;
+      var cards = [].slice.call(document.querySelectorAll('.pick-card')), none = document.getElementById('empty-state'), count = document.getElementById('pick-count');
+      function refresh() {
         var q = input.value.trim().toLowerCase(), shown = 0;
-        rows.forEach(function (li) { var hit = !q || li.getAttribute('data-search').toLowerCase().indexOf(q) >= 0; li.hidden = !hit; if (hit) shown++; });
-        none.hidden = shown > 0;
-      });
-      // 릴스 키트의 "소개 페이지 바로 가기"(/picks/…#01): 그 번호 상품만 바로 보여 준다
+        cards.forEach(function (c) { var hit = !q || c.getAttribute('data-search').toLowerCase().indexOf(q) >= 0; c.hidden = !hit; if (hit) shown++; });
+        none.hidden = shown > 0; count.textContent = shown + (shown === 1 ? ' pick' : ' picks');
+      }
+      input.addEventListener('input', refresh);
+      // 릴스 키트의 바로 가기 주소(…#01): 그 번호 상품만 보여 준다
       var want = decodeURIComponent((location.hash || '').slice(1));
-      if (/^\d{1,3}$/.test(want)) { input.value = want.padStart(2, '0'); input.dispatchEvent(new Event('input')); }
+      if (/^\d{1,3}$/.test(want)) { input.value = want.length < 2 ? '0' + want : want; refresh(); document.getElementById('picks').scrollIntoView(); }
     })();
   </script>
 </body>
